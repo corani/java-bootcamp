@@ -1,0 +1,1160 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Java Bootcamp</title>
+
+		<meta name="description" content="Java Bootcamp training">
+		<meta name="author" content="Daniel Bos">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style type="text/css">
+			section {
+				background-color:rgba(0,0,0,0.5);
+				border-radius: 15px;
+			}
+		</style>
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script type="text/javascript">
+			function renderTiobi() {
+				$('#tiobi-chart').highcharts({
+					chart: {
+						type: 'line'
+					},
+					credits: {
+						enabled: false
+					},
+					title: {
+						text: 'Tiobi Index of Programming Languages',
+						x: -20 //center
+					},
+					subtitle: {
+						text: 'Source: tiobi.com',
+						x: -20
+					},
+					xAxis: {
+						categories: ['2002', '2004', '2006', '2008', '2010', '2012', '2014']
+					},
+					yAxis: {
+						min: 0,
+						max: 25,
+						title: {
+							text: 'Popularity (%)'
+						},
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					tooltip: {
+						valueSuffix: '%'
+					},
+					legend: {
+						layout: 'vertical',
+						align: 'right',
+						verticalAlign: 'middle',
+						borderWidth: 0
+					},
+					series: [{
+						name: 'C',
+						data: [19, 18, 19, 14, 16, 17, 18],
+						marker: { enabled: false }
+					}, {
+						name: 'Java',
+						data: [24, 23, 22, 21, 17, 17, 16],
+						marker: { enabled: false }
+					}, {
+						name: 'Objective-C',
+						data: [0, 0, 0, 0, 1, 6, 11],
+						marker: { enabled: false }
+					}, {
+						name: 'C++',
+						data: [15, 16, 11, 9, 10, 8, 8],
+						marker: { enabled: false }
+					}, {
+						name: 'C#',
+						data: [1, 2, 4, 5, 5, 9, 6],
+						marker: { enabled: false }
+					}, {
+						name: 'Scheme/SX',
+						data: [0, 0, 0, 0, 0, 0, 0],
+						marker: { enabled: false }
+					}]
+				});
+			}
+			function renderWelcome() {
+				now = new Date();
+				text = now.getFullYear() + "/";
+				if (now.getMonth() < 9) text += "0";
+				text += (1 + now.getMonth()) + "/";
+				if (now.getDate() < 10) text += "0";
+				text += now.getDate();
+				$("#today")[0].innerHTML = text;
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section data-markdown id="welcome" data-state="render-welcome">
+					<script type="text/template">
+						# Welcome
+						
+						## Java Bootcamp
+						<div id="today">today</div>
+					</script>
+					<script type="text/javascript">
+						Reveal.addEventListener('render-welcome', renderWelcome);
+					</script>
+				</section>
+
+				<section data-markdown id="agenda">
+					<script type="text/template">
+						## Agenda
+						
+						- What is this training about?
+						- Why Java?
+						- Language introduction
+						- Exercises
+					</script>
+				</section>
+
+<!-- WHAT THIS TRAINING IS *NOT* /-->
+
+				<section>
+					<section data-markdown id="what-its-not">
+						<script type="text/template">
+							## What this training is *not*
+							
+							- An introduction to programming
+
+							- An introduction to Android development
+
+							- An exploration of Java API's
+						</script>
+					</section>
+					
+					<section data-markdown id="what-it-is">
+						<script type="text/template">
+							## So what is it about?
+							
+							- An introduction to the Java *Language*
+							- Some of the most important Java language features
+							- Differences between Java and other C-style languages
+							- Many code examples
+							- Some exercises to get familiar with writing Java
+						</script>
+					</section>
+				</section>
+
+<!-- WHY JAVA? /-->
+
+				<section>
+					<section data-markdown id="why-java">
+						<script type="text/template">
+							# Why Java?
+						</script>
+					</section>
+					<section data-markdown id="most-popular" data-state="render-tiobi">
+						<script type="text/template">
+							## Most popular language
+							
+							<div id="tiobi-chart" style="min-width: 310px; height: 400px; margin: 5 auto"></div>
+							So it's easy to find developers
+						</script>
+						<script type="text/javascript">
+							Reveal.addEventListener('render-tiobi', renderTiobi);
+						</script>
+					</section>
+					<section data-markdown id="but-also">
+						<script type="text/template">
+							## But also
+							
+							- A C-style language, familiar to most developers
+							- Garbage-collected, it's hard to leak memory
+							- No pointers, it's hard to crash
+							- Java ME is already widely used on mobile phones
+							- Has a mature security model (sandbox)
+							- Runs in a VM, no need to recompile for different architectures
+							- Also available for the back-end (server)
+							- Many available tools
+						</script>
+					</section>
+					<section data-markdown id="not-java">
+						<script type="text/template">
+							## Warning
+							
+							- Android is not Java :-)
+							- Not based on the Oracle/OpenJDK implementation and not certified
+							- Based on the Apache Harmony implementation, which is very close to Java 6
+							- Conflicting information on support for Java 7 language features
+							- The topics in this training are still valid though
+						</script>
+					</section>
+				</section>
+				
+<!-- LANGUAGE INTRODUCTION /-->
+
+				<section data-markdown id="language-intro">
+					<script type="text/template">
+						# Language introduction
+					</script>
+				</section>
+				
+				<section id="language-basics">
+					<section data-markdown id="language-conventions">
+						<script type="text/template">
+							## Coding Conventions
+							<pre class="java"><code data-trim>
+package com.example.javatraining;
+
+public class SomeExample {
+    private int count = 10;
+	
+    public int getCount() {
+        return count;
+    }
+	
+    public void setCount(int count) {
+        this.count = count;
+    }
+}
+							</code></pre>
+
+							<aside class="notes">
+								CamelCase, no polish notation, get/set (JavaBeans)
+							</aside>
+						</script>
+					</section>
+					
+					<section data-markdown id="language-organization">
+						<script type="text/template">
+							## Code Organization
+							<pre class="java"><code data-trim>
+package [package.name];
+
+import com.example.example.*;
+import com.example.another.Example;
+
+[access-modifier] class SomeExample extends [Base] implements [Interface] {
+    [access-modifier] int count = 10;
+
+    [access-modifier] getCount() {
+        return count;
+    }
+}
+							</code></pre>
+
+							- Classes are organized into `packages`
+							- You need to `import` classes from other packages
+							- Classes can `extend` other classes
+							- Classes can `implement` interfaces
+							
+							<aside class="notes">
+								functions, classes, packages
+								public, package-protected, protected, private
+							</aside>
+						</script>
+					</section>
+				
+					<section data-markdown id="language-keywords">
+						<script type="text/template">
+							## Other modifiers
+							
+							- `static` to mark something as class-level instead of object-level
+							- `final` to mark something as not modifiable
+							- `abstract` for methods without an implementation
+							- `synchronized` for thread-safe code blocks
+							- `volatile` for thread-safe variables
+							- `transient` won't be serialized
+							
+							<aside class="notes">
+								static, final, abstract, synchronized, and so on
+							</aside>
+						</script>
+					</section>
+					
+					<section data-markdown id="language-organization-exercise">
+						<script type="text/template">
+							## Exercise
+							
+							<ul><li>`java.util.Arrays` is a very useful class provided by JDK
+								<ul><li>`public static void sort(int[] a)` to sort an integer array.</li>
+								<li>`public static int binarySearch(int[] a, int key)` to find a key in an *sorted* array</li></ul>
+							</li></ul>
+							<br/><br/>
+							<ol>
+								<li>Create a package `com.example.javatraining`</li>
+								<li>Create a class `BinarySearch` under this package</li>
+								<li>Create a method `public static int binarySearch(int[] a, int key)` that calls the method with the same name under `Arrays`</li>
+								<li>Create a method `public static boolean contains(int[] a, int key)` that uses `sort` and `binarySearch`</li>
+								<li>Create a method `public static void main(String[] args)` to test your implementation</li>
+								<li>Run your code and check that it works correctly.</li>
+							</ol>
+						</script>
+					</section>
+				</section>
+				
+				<section id="language-types">
+					<section data-markdown id="language-types-intro">
+						<script type="text/template">
+							## Types
+							
+							- Primitives: `char, byte, short, int, long, boolean, double, float`
+							- Objects
+							- Strings: "Special" kinds of Objects
+							- Arrays
+							- Enumerations
+							- Collections: `Sets, Lists, Maps, Stacks, Queues`
+							
+							<aside class="notes">
+								primitives (int, boolean, float, etc), arrays, Object, String, List, Map
+							</aside>
+						</script>
+					</section>
+					<section data-markdown id="language-types-arrays">
+						<script type="text/template">
+							## Arrays
+							
+<pre class="java"><code data-trim>
+// Either specify a size, or an initializer
+int[] ints = new int[5];
+byte[] bytes = new byte[] { 1, 2, 3, 4, 5 };
+</code></pre>
+<pre class="java fragment"><code data-trim>
+// Works the same for Objects
+Animal[] animals = new Animal[] { new Cat(), new Dog() };
+</code></pre>
+<pre class="java fragment"><code data-trim>
+// Iterate
+for (int index = 0; index < animals.length; index++) {
+    Animal animal = animals[index];
+}
+</code></pre>
+<pre class="java fragment"><code data-trim>
+// For-each
+for (Animal animal : animals) {
+    // ...
+}
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-types-enum">
+						<script type="text/template">
+							## Enumerations
+<pre class="java"><code data-trim>
+enum Animal { CAT, DOG, MOUSE }
+</code></pre>
+<pre class="java fragment"><code data-trim>
+Animal animal = Animal.CAT;
+switch(animal) {
+    case CAT:
+        // do cat things
+		break;
+	case DOG:
+		// do dog things
+		break;
+}
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-types-conversion-boxing">
+						<script type="text/template">
+							## Type conversion: (Un-)Boxing
+<pre class="java"><code data-trim>
+// When you type:
+Integer x = 567;
+x++;
+
+// What actually happens:
+Integer x = new Integer(567); // box
+int temp = x.intValue();      // un-box
+temp++;
+x = new Integer(temp);        // box
+</code></pre>
+
+<pre class="java fragment"><code data-trim>
+Integer i1 = 1000;
+Integer i2 = 1000;
+// What will happen:
+if (i1 == i2)      // ???
+if (i1.equals(i2)) // ???
+</code></pre>
+
+<pre class="java fragment"><code data-trim>
+if (i1 == i2)      // No, the objects are different
+if (i1.equals(i2)) // Yes, the values are the same
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-types-conversion-widening">
+						<script type="text/template">
+							## Type conversion: Widening
+<pre class="java"><code data-trim>
+public void test(int x);
+public void test(long x);
+public void test(double x);
+</code></pre>
+
+<pre class="java"><code data-trim>
+byte b = 5;
+short s = 5;
+long l = 5;
+float f = 5.0f;
+// Which method will be invoked?
+test(b);
+test(s);
+test(l);
+test(f);
+</code></pre>
+<p class="fragment">If there is no exact match, the JVM will choose the method with the smallest argument that is wider than the parameter.</p>
+<pre class="java fragment"><code data-trim>
+test(b); // Invoke INT version
+test(s); // Invoke INT version
+test(l); // Invoke LONG version
+test(f); // Invoke DOUBLE version
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-types-conversion-casting">
+						<script type="text/template">
+							## Type conversion: Casting
+<pre class="java"><code data-trim>
+public void test(int x);
+public void test(long x);
+</code></pre>
+
+<pre class="java"><code data-trim>
+byte b = 5;
+long l = 5;
+// If you want to invoke a specific method, you'll need to manually cast:
+test((int) b);  // Invoke INT version
+test((long) b); // Invoke LONG version
+test((int) l);  // Invoke INT version, with possible loss of information
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-types-conversion-widening-boxing">
+						<script type="text/template">
+							## Type conversion: Widening &amp; Boxing
+<pre class="java"><code data-trim>
+public void test(Integer x);
+public void test(long x);
+</code></pre>
+
+<pre class="java"><code data-trim>
+int i = 5;
+test(i); // Which method will be invoked?
+</code></pre>
+<p class="fragment">Widening will be tried before boxing, since the boxing feature was added to the language later</p>
+						</script>
+					</section>
+					<section data-markdown id="language-types-conversion-varargs">
+						<script type="text/template">
+							## Type conversion: Var-args
+<pre class="java"><code data-trim>
+public void test(byte... x) {
+	// all the arguments will be available as a byte-array:
+	for (int i = 0; i < x.length; i++) {
+        System.out.println("Index: " + i + ", Value: " + x[i]);
+	}
+}
+</code></pre>
+
+<pre class="java"><code data-trim>
+test(5);
+test(5, 4);
+test(5, 4, 3);
+// etc.
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-types-conversion-widening-varargs">
+						<script type="text/template">
+							## Type conversion: Widening &amp; Var-args
+<pre class="java"><code data-trim>
+public void test(byte... x);
+public void test(int x, int y);
+</code></pre>
+
+<pre class="java"><code data-trim>
+byte b = 5;
+test(b, b); // Which method will be invoked?
+</code></pre>
+<p class="fragment">Widening will be tried before var-args, since the var-args feature was added to the language later</p>
+						</script>
+					</section>
+					<section data-markdown id="language-types-conversion-summary">
+						<script type="text/template">
+							## Type conversion: Summary
+							
+							- Casting beats all
+							- Widening beats Boxing
+							- Widening beats Var-args
+							- Boxing beats Var-args
+							<br/><br/>
+							#### Casting &gt; Widening &gt; Boxing &gt; Var-args
+						</script>
+					</section>
+					<section data-markdown id="language-types-exercise">
+						<script type="text/template">
+							## Exercise
+							
+<pre class="java"><code data-trim>
+// Given:
+public class Test {
+    static int doTest(Long x, Long y)       { return 1; }
+	static int doTest(long... x)            { return 2; }
+	static int doTest(Integer x, Integer y) { return 3; }
+	static int doTest(Number n, Number m)   { return 4; }
+&nbsp;
+	public static void main(String[] args) {
+        short s = 7; long l = 7;
+        System.out.println(doTest(l, l));
+		System.out.println(doTest(s, s));
+		System.out.println(doTest(7, 7));
+	}
+}
+// What is the output and why?
+</code></pre>
+							<div class="fragment">
+								- Which parameters could you supply to get the program to output "2"?
+							</div>
+						</script>
+					</section>
+				</section>
+				
+				<section id="language-oo">
+					<section data-markdown id="language-oo-intro">
+						<script type="text/template">
+							## Object Oriented
+
+							- No separate declarations
+							- All functionality is defined within a `class`. No globals!
+							- No multiple-inheritance (but there are `interfaces` instead)
+							<aside class="notes">
+								abstract class, inner class, anonymous class, interface, polymorphism, enums
+							</aside>
+						</script>
+					</section>
+					<section data-markdown id="language-oo-types">
+						<script type="text/template">
+							## Types of classes
+<pre class="java"><code data-trim>
+[access-modifier] [type-modifier] class Name {
+    // inner class:
+	[access-modifier] [type-modifier] class InnerClass {
+	    // ...
+	}
+}
+</code></pre>
+
+							- Access Modifier: `public`, `private`, `protected` or *package*
+							- Type Modifier: `static`, `abstract`, `final`
+							- An `interface` is like a purely `abstract class` (no implementation as all)
+						</script>
+					</section>
+					<section data-markdown id="language-oo-inner">
+						<script type="text/template">
+							## Nested classes
+<pre class="java"><code data-trim>
+public class Outer {
+	public static class StaticInner {
+	    // ...
+	}
+	public class Inner {
+	    // ...
+	}
+}
+
+Outer.StaticInner = new Outer.StaticInner();
+
+Outer outer = new Outer();
+Outer.Inner = outer.new Inner();
+</code></pre>
+
+							- `Static` inner class can only access static variables/methods of the outer class
+							- `Non-static` inner class can also access instance variables/methods of the outer class
+						</script>
+					</section>
+					<section data-markdown id="language-oo-anonymous">
+						<script type="text/template">
+							## Anonymous classes (1)
+<pre class="java"><code data-trim>
+Type name = new Type() {
+    public void method() {
+	    // ...
+	}
+};
+
+public void method(Type type) {
+    // ...
+}
+
+method(new Type() {
+    public void method() {
+	    // ...
+	}
+});
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-oo-anonymous-2">
+						<script type="text/template">
+							## Anonymous classes (2)
+<pre class="java"><code data-trim>
+Type name = new Type() {
+    public void method() {
+	    // ...
+	}
+};
+</code></pre>
+<pre class="java fragment"><code data-trim>
+class Type$1 extends Type { // or "implements" if Type is an interface
+    public void method() {
+	    // ...
+	}
+}
+
+Type name = new Type$1();
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-oo-extend">
+						<script type="text/template">
+							## Extend/Implement
+<pre class="java"><code data-trim>
+public interface Interface1 {
+    // ...
+}
+public interface Interface2 {
+    // ...
+}
+public class Base {
+    // ...
+}
+
+public class Child extends Base
+                   implements Interface1, Interface2 {
+    public void method() {
+	    super.otherMethod();
+	}
+}
+</code></pre>
+
+							- You can `implement` multiple `interfaces`
+							- But `extend` only one base `class`
+						</script>
+					</section>
+					<section data-markdown id="language-oo-enum">
+						<script type="text/template">
+							## Enumerations - Redux
+<pre class="java"><code data-trim>
+enum Animal {
+    CAT("meow"), DOG("woof"), MOUSE("squeak");
+&nbsp;
+    private String sound;
+&nbsp;
+    Animal(String sound) {
+        this.sound = sound;
+    }
+&nbsp;
+    public String getSound() {
+        return sound;
+    }
+}
+</code></pre>
+<pre class="java fragment"><code data-trim>
+Animal animal = Animal.CAT;
+animal.getSound();
+</code></pre>
+							<aside class="notes">
+								Enumerations in Java are based on Objects, not on integers, so you can do many interesting things with them
+							</aside>
+						</script>
+					</section>
+					<section data-markdown id="language-oo-exercise">
+						<script type="text/template">
+							## Exercise
+							
+							1. Create an `interface` Animal with a method `public String makeSound()`
+							2. Create two `classes` Cat and Dog that implement this interface
+							3. Add an `public abstract String getColor()` to the class Dog
+							4. Create two `classes` Labrador and Retriever that `extend` Dog
+							5. Create an `anonymous class` that extends Dog
+						</script>
+					</section>
+				</section>
+
+				<section id="language-exceptions">
+					<section data-markdown id="language-exceptions-intro">
+						<script type="text/template">
+							## Exceptions
+<pre class="java"><code data-trim>
+public int read(byte[] buffer) throws IOException {
+    if (isEndOfFile) {
+        return -1;
+    }
+    if (buffer == null) {
+        throw new IllegalArgumentException("buffer can't be null");
+    }
+	// read data, throw IOException if something goes wrong
+}
+</code></pre>
+
+<pre class="java fragment"><code data-trim>
+public void example() {
+    byte[] buffer = new byte[1024];
+    try {
+        in = file.open();
+        while ((len = in.read(buffer)) >= 0) {
+            // handle data
+        }
+    } catch (IOException e) {
+        // handle exception
+    } finally {
+        if (in != null) in.close();
+    }
+}
+</code></pre>
+							<aside class="notes">
+								throw, catch, finally, checked/unchecked, when to (not) use exceptions
+							</aside>
+						</script>
+					</section>
+					<section data-markdown id="language-exceptions-exercise">
+						<script type="text/template">
+							## Exercise
+<pre class="java"><code data-trim>
+public class PhoneNumberFile {
+	private int line = 5;
+	public static PhoneNumberFile open(String path) throws FileNotFoundException {
+		return new PhoneNumberFile();
+	}
+	public String readLine() throws IOException {
+		if (line-- <= 0) throw new IOException();
+		return "555-123-4567\tExample";
+	}
+	public boolean eof() throws IOException {
+		return line <= 0;
+	}
+	public void close() throws IOException {
+		// ...
+	}
+}
+</code></pre>
+<pre class="java fragment"><code data-trim>
+public void printPhoneNumbers(String path) {
+	// open the file
+	// read the file and print the numbers
+	// make sure the file is always closed properly
+}
+</code></pre>
+						</script>
+					</section>
+				</section>
+				
+				<section data-markdown id="language-gc">
+					<script type="text/template">
+						## Garbage collection
+<pre class="java"><code data-trim>
+public void example() {
+    A a = new A();
+	a = null; // "A" object will be GC'd because no references left
+
+	{
+        B b = new B();
+    } // "B" object will be GC'd because out-of-scope
+	
+    A a = new A();	B b = new B();
+    a.ref = b;      b.ref = a;
+	a = null;       b = null;
+	// "A" and "B" objects will be GC'd because "Isolation Island"
+	
+	WeakReference wr = new WeakReference(new A());
+	// "A" object *may* be GC'd if memory is low
+}
+</code></pre>						
+						<aside class="notes">
+							- When there are no references to an Object, the Object will be GC'd
+							- References are lost when they go out-of-scope or when they are set to null
+							- "Islands of isolation" can also be GC'd (`A->B` and `B->A`)
+							- Weak references *may* be GC'd if the memory is getting full
+							- *Anything not reachable from a GC root (such as active Thread, local scope, static variables) is eligible*
+						</aside>
+					</script>
+				</section>
+								
+				<section id="language-generics">
+					<section data-markdown id="language-generics-intro">
+						<script type="text/template">
+							## Generics
+							### &lt;Pointy braces galore!&gt;
+							<aside class="notes">
+								collections, polymorphism, methods, classes
+							</aside>
+						</script>
+					</section>
+					<section data-markdown id="language-generics-problem">
+						<script type="text/template">
+							## Without generics: The problem
+
+<pre class="java"><code data-trim>
+function feed(Animal animal) {
+    animal.feed(animal.getFavoriteSnack());
+}
+</code></pre>
+
+<pre class="java"><code data-trim>
+List animals = new ArrayList();
+animals.add(new Dog());
+animals.add(new Cat());
+animals.add(new Integer(1)); // Totally valid!
+</code></pre>
+
+<pre class="java"><code data-trim>
+for (Object animal : animals) {
+    feed((Animal) animal); // Exception when we get to the Integer
+}
+</code></pre>
+							<aside class="notes">
+								Since the `List` takes any kind of `Object`, the compiler can't figure out we're doing something wrong here.
+							</aside>
+						</script>
+					</section>
+					<section data-markdown id="language-generics-work-around">
+						<script type="text/template">
+							## Without generics: Work-around
+<pre class="java"><code data-trim>
+List animals = new ArrayList();
+animals.add(new Dog());
+animals.add(new Cat());
+animals.add(new Integer(1)); // Totally valid!
+</code></pre>
+
+<pre class="java"><code data-trim>
+for (Object animal : animals) {
+    if (animal instanceof Animal) {
+		feed((Animal) animal);
+    }
+}
+</code></pre>
+							<aside class="notes">
+								We need to check the type of each `List` item when we want to use them. This is obviously ugly, but more important,
+								it will hide the real problem: we shouldn't be allowed to add `Integers` to the list in the first place!
+							</aside>
+						</script>
+					</section>
+					<section data-markdown id="language-generics-generics">
+						<script type="text/template">
+							## With generics
+<pre class="java"><code data-trim>
+List&lt;Animal&gt; animals = new ArrayList&lt;Animal&gt;();
+animals.add(new Dog());
+animals.add(new Cat());
+// animals.add(new Integer(1)); // Compiler error!
+</code></pre>
+
+<pre class="java"><code data-trim>
+// Here we can get rid of all the casting
+for (Animal animal : animals) {
+	feed(animal);
+}
+</code></pre>
+							<aside class="notes">
+								By using `Generics` we can declare that the `List` is only supposed to take `Animals`. When we try to add anything else
+								the compiler will detect it and complain.
+							</aside>
+						</script>
+					</section>
+					<section data-markdown id="language-generics-create">
+						<script type="text/template">
+							## Roll your own
+<pre class="java"><code data-trim>
+public class Pool&lt;T&gt; {
+    private List&lt;T&gt; pool;
+	
+    public void add(T element);
+	
+	public static &lt;T&gt; Pool&lt;T&gt; create(T...elements) {
+		Pool&lt;T&gt; pool = new Pool&lt;T&gt;();
+		for (T element : elements) {
+			pool.add(element);
+		}
+		return pool;
+	}
+}
+</code></pre>
+<pre class="java"><code data-trim>
+Pool&lt;Dog&gt; dogs = Pool.create(new Dog(), new Cat());
+Pool&lt;Car&gt; cars = Pool.create(new Car());
+Pool&lt;Integer&gt; ints = Pool.create(1, 1, 2, 3, 5);
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-generics-sort">
+						<script type="text/template">
+							## What's all the fuss about?
+<pre class="java"><code data-trim>
+public void sort(List&lt;? extends Comparable&gt; list);
+</code></pre>
+<pre class="java"><code data-trim>
+public class Dog {
+    private int size;
+
+    public Dog(int size) {
+        this.size = size;
+    }
+}
+</code></pre>
+<pre class="java"><code data-trim>
+List&lt;Dog&gt; dogs = new ArrayList&lt;Dog&gt;();
+dogs.add(new Dog(40));
+dogs.add(new Dog(35));
+dogs.add(new Dog(42));
+
+sort(dogs); // This doesn't compile
+            // (since we don't know how to compare dogs)
+</code></pre>							
+						</script>
+					</section>
+					<section data-markdown id="language-generics-comparable">
+						<script type="text/template">
+							## How to fix it?
+<pre class="java"><code data-trim>
+public void sort(List&lt;? extends Comparable&gt; list);
+</code></pre>
+<pre class="java"><code data-trim>
+public class Dog implements Comparable&lt;Dog&gt; {
+    private int size;
+
+    public Dog(int size) {
+        this.size = size;
+    }
+	
+	public int compareTo(Dog other) {
+        return this.size - other.size;
+	}
+}
+</code></pre>
+<pre class="java"><code data-trim>
+List&lt;Dog&gt; dogs = new ArrayList&lt;Dog&gt;();
+dogs.add(new Dog(40));
+dogs.add(new Dog(35));
+dogs.add(new Dog(42));
+
+sort(dogs); // Now it works, since we know how to compare dogs
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-generics-exercise">
+						<script type="text/template">
+							## Exercise
+							
+							1. Create a class `GenericStack<T>`
+							2. Add the approprate `push`, `pop` and `peek` methods
+							3. Implement these methods using a `LinkedList`
+							4. Write code to test your implementation with various types, such as `Integer`, `Animal` and `GenericStack<T>` (Yes, generic types can be nested!)
+						</script>
+					</section>
+				</section>
+				
+				<section id="language-reflection">
+					<section data-markdown id="language-reflection-intro">
+						<script type="text/template">
+							## Reflection
+							### Getting meta
+							
+							<aside class="notes">
+								meta-class, class-for-name, constructors, fields, methods				
+							</aside>
+						</script>
+					</section>
+					<section data-markdown id="language-reflection-meta">
+						<script type="text/template">
+							## Reflection: Meta-class
+							
+							Every class has an associated meta-class that can be used to get all sorts of information about the class and to interact with the class.
+<pre class="java"><code data-trim>
+Class clazz = String.class;
+</code></pre>							
+						</script>
+					</section>
+					<section data-markdown id="language-reflection-instanciate">
+						<script type="text/template">
+							## Reflection: Checking if a class exists
+<pre class="java"><code data-trim>
+try {
+    Class clazz = Class.forName("com.example.example.ExampleClass");
+} catch (ClassNotFoundException e) {
+    // It doesn't exist
+}
+</code></pre>
+<pre class="java fragment"><code data-trim>
+try {
+    Example example = (Example) clazz.newInstance();
+} catch (InstantiationException e) {
+    // No default constructor
+} catch (IllegalAccessException e) {
+    // No access to the class/constructor
+}
+</code></pre>
+						</script>
+					</section>
+					<section data-markdown id="language-reflection-inspect">
+						<script type="text/template">
+							## Reflection: Inspect class
+<pre class="java"><code data-trim>
+// Get all the constructors:
+Constructor[] constructors = clazz.getDeclaredConstructors();
+// Get the constructor matching a specific signature:
+Constructor constructor = clazz.getDeclaredConstructor(String.class);
+// Instantiate an object:
+Example example = (Example) constructor.newInstance("String");
+</code></pre>
+<pre class="java fragment"><code data-trim>
+// Get all the methods (public and private):
+Method[] methods = clazz.getDeclaredMethods();
+// Get all visible methods (including from super-classes)
+Method[] methods = clazz.getMethods();
+// Get the method for a specific signature:
+Method method = clazz.getDeclaredMethod("setExample", String.class);
+// Invoke the method on an object:
+method.invoke(example, "New String");
+</code></pre>
+							<p class="fragment">
+								There are similar methods for getting the inner-classes, fields and enclosing class.
+							</p>
+						</script>
+					</section>
+					<section data-markdown id="language-reflection-what-for">
+						<script type="text/template">
+							## Reflection: What is it good for?
+							
+							- When you are not sure if a class will be available at runtime (different API levels)
+							- For debugging (e.g. to get the name of the current class)
+							- When creating new languages or frameworks
+							- But all of this comes at a cost to the performance!
+						</script>
+					</section>
+					<section data-markdown id="language-reflection-exercise-1">
+						<script type="text/template">
+							## Exercise 1
+							
+							- Class `java.lang.reflect.Method` has a method `setAccessible(boolean)` which can change the method's access modifier.
+
+<pre class="java"><code data-trim>
+public class SecretTask {
+    private String password(){
+        return "s3cr3t";
+    }
+}
+</code></pre>
+<div class="fragment">
+							<ul><li>Implement the following method and use reflection to try to get the password</li></ul>
+							
+<pre class="java"><code data-trim>
+public class SpyOnSecretTask {
+    public void breakPassword() {
+	    // ...
+	}
+}
+</code></pre>
+</div>
+						</script>
+					</section>
+					<section data-markdown id="language-reflection-exercise-2">
+						<script type="text/template">
+							## Exercise 2
+							
+							- Re-use the Animal interface and Cat, Dog, Labrador and Retriever classes you defined earlier
+							- Implement the following method that will print for each animal:
+								- The sort of animal (class-name)
+								- A list of properties for the animal. Assume that every method that looks like<br/> `public [Type] getXxx()` can be used to get the value of property `Xxx`
+<pre class="java"><code data-trim>
+public void printInfo(List&lt;Animal&gt; animals) {
+    // ...
+}
+</code></pre>
+						</script>
+					</section>
+				</section>
+				
+<!-- EXERCISES /-->
+
+				<section>
+					<section data-markdown id="the-end">
+						<script type="text/template">
+							# The End
+						</script>
+					</section>
+				</section>
+			</div>
+			
+		</div>
+
+		<script>
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				slideNumber: true,
+				
+				width: 1400,
+				height: 800,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+				parallaxBackgroundImage: 'universe.jpg',
+				parallaxBackgroundSize: '2560px 1600px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/highcharts/jquery-1.9.1.js', async: false },
+					{ src: 'plugin/highcharts/highcharts.js', async: true }
+				]
+			});
+		</script>
+
+	</body>
+</html>
